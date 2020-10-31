@@ -66,11 +66,16 @@
           icon = `class="far fa-calendar"`
         }
         but1 = '<div class="row"><div class="btn border  first-btn">' + divTimetext + '</div>';       
-        if (i <= hour){
+        if (i < hour){
            but2 = '<input readonly class="btn second-btn-past" id = calItem'+ i+ ' value="'+ itemTxt +'"></input>';
            but3 = '<button type="button" class="btn border third-btn-past" ' + 'id = "' + i + '">' + 
            '<i  id="icon'+i+'"'+icon + '></i></button></div>';
-         } else { but2 = '<input type="text" class="btn second-btn" id = calItem'+i+ ' value="'+ itemTxt +'"></input>';
+         } else if (i == hour){
+          but2 = '<input type="text" class="btn second-btn-pres" id = calItem'+i+ ' value="'+ itemTxt +'"></input>';
+          but3 = '<button type="button" class="btn border third-btn-pres" ' + 'id = "' + i + '">' + 
+          '<i id="icon' +i+'"'+icon + '></i></button></div>';}
+           else {
+          but2 = '<input type="text" class="btn second-btn" id = calItem'+i+ ' value="'+ itemTxt +'"></input>';
          but3 = '<button type="button" class="btn border third-btn" ' + 'id = "' + i + '">' + 
          '<i id="icon' +i+'"'+icon + '></i></button></div>';}
         se += but1 + but2 +but3;

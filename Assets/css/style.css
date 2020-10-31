@@ -104,5 +104,18 @@ textarea{
   border: #ff6961;
   border-width: 2px;
   background-color: pink;
-
 }
+.second-btn-pres{
+  width: 70%;
+  border-style: solid;
+  border: lightgoldenrodyellow
+  background-color: lightgoldenrodyellow
+}
+.third-btn-pres{
+  border-style: solid;
+  width: 10%;
+  border: #ff6961;
+  border-width: 2px;
+  background-color: lemonchiffon;
+}
+
