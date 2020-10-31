@@ -27,11 +27,9 @@
       // todaysItems[18] = "go home";
       // console.log(todaysItems);
       createPlannerPage(dateString);
-      //localStorage.removeItem('dailyCalendar');
-      //localStorage.setItem('dailyCalendar',JSON.stringify(calDetails));
    
     }
-/* for future
+/* for future function so I can look at yesterday today and tomorrow change date might be fun 
     function addNavBar(){
     let cd=document.querySelector('#currentDay');
     cd.textContent = today;
@@ -101,22 +99,18 @@
       let j = this.id;
       let i = "#calItem"+j;
       let  icon = document.querySelector('#icon'+j);
-      
-      //icon.toggleClass("far fa-calendar","fas fa-calendar-check");
       let itm2 = document.querySelector(i).value;
       todaysItems[j] = itm2;
       let updatedItems = JSON.stringify(todaysItems);
+      //this one actually saves the data
       localStorage.setItem(dateString,updatedItems);
-      if(itm2.length > 0){
+      // chnage the icon if we add contact (tried toogle but not using jquery)
+      if(itm2.length > 1){
       icon.setAttribute("class","fas fa-calendar-check");
       } else {
         icon.setAttribute("class","far fa-calendar");
       }
-      
-     
-
     }
-
 
   function getCalendarItems(dateString){ 
       //Get the High Score for the start
@@ -129,7 +123,7 @@
 
   function createCal(dateString){
     /*creating the calendar array as a string because it simpler to work with text strings 
-    and it needs to be in text json to add it to local storage anyway! */
+    and it needs to be in text json format to add it to local storage anyway! */
     let j = '{'
     let k = "", s="";
     for (let i = 8; i  <= 18; i++){

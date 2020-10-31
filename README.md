@@ -31,19 +31,21 @@ The solution is designed to allow a user to provide a daily planner so that time
 Behavior to meet the following requirements:
 
 * A daily planner to create a schedule when  open the planner the current day is displayed at the top of the calendar
-* scroll down presents time blocks for standard business hours
-* when viewing the time blocks for that day time block is color-coded to indicate whether it is in the past, present, or future
+* Scroll down presents time blocks for standard business hours
+* When viewing the time blocks for that day time block is color-coded to indicate whether it is in the past, present, or future
 * If the time in present or future the even can be updated
 * To save the calendar item for that time block the button on the right has to be checked
 * If there is an item in the timeslot the calendar item icon will be checked and the event is saved in local storage
-* when the page is refreshed saved events persist
+* When the page is refreshed saved events persist
+
+![ScreenShot](./Assets/images/cal.jpg)
 
 ## credits
 The majaority of code used was developed by review the class materials from the UCB boot camp and using javascript and moment.js. Used the fonts and items from the bootstrap 4 samples sample documents. 
 
 
-Peer review by study group: Lucah
-Help from TAs: Clarence & Jeff for helping with review of logic on dynamically the question form. 
+Peer study group: Lucah and Mike
+
 
 Code Validated by https://validator.w3.org/
 

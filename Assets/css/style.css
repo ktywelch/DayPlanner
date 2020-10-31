@@ -3,9 +3,9 @@ body {
   font-size: 16px;
   line-height: 1;
 }
-
-#yesterday,
-#tomorrow{
+/* Putting these in place so i can continue working on adding previous and next day*/
+#prevday,
+#nextday{
   display: inline-block;
   padding: 5px;
   margin: 2px;
@@ -108,14 +108,14 @@ textarea{
 .second-btn-pres{
   width: 70%;
   border-style: solid;
-  border: lightgoldenrodyellow
-  background-color: lightgoldenrodyellow
+  border: rgb(245, 223, 30);
+  background-color: rgb(243, 243, 150);
 }
 .third-btn-pres{
   border-style: solid;
   width: 10%;
   border: #ff6961;
   border-width: 2px;
-  background-color: lemonchiffon;
+  background-color: rgb(247, 227, 55);
 }
 
