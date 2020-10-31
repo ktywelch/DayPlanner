@@ -19,6 +19,7 @@
       rel="stylesheet"
     />
    <link rel="stylesheet" href="./Assets/css/style.css" />
+   
     <title>Work Day Scheduler</title>
   </head>
 
@@ -27,13 +28,14 @@
       <h1 class="display-3">Work Day Scheduler</h1>
       <p class="lead">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
-      <button>Clear All Today Entries</button>
+      <button id=clearAll>Clear All Today's Entries</button>
     </header>
-    <div class="container" id="timeBlocks">
+    <div class="container d-flex" id="timeBlocks">
       <!-- Timeblocks go here -->
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
     <script src="./Assets/js/create-planner.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   </body>
 </html>

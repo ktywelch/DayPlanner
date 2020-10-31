@@ -1,90 +1,97 @@
     //var dt = new Date();
-    var dt = moment(); 
-    var dayOfWeek = dt.getDay(); 
-    var hour =  dt.getHours();
-    var today = dt.toLocaleDateString()
+    // get today’s date (will be a UTC date so from there you can get day of week, hour … etc.)
+    var dt = moment();
+    var  dayOfWeek = dt.format("DDDD");
+    var hour =    dt.format("HH");
+    var today = dt.format(`MMMM-DD-YYYY`);
     var calDetails=[],todaysItems=[];
     var dateString = "";
+    console.log(today);
 
 
     function startPlanner(){
       //Lets just do it for today
       dateString = today;
       todaysItems = getCalendarItems(dateString);
-      console.log(todaysItems);
-      todaysItems[0][18] = "go home";
-      console.log(todaysItems);
-      createPlannerPage(calDetails);
-      localStorage.removeItem('dailyCalendar');
-      localStorage.setItem('dailyCalendar',JSON.stringify(calDetails));
-
+      console.log("here" + todaysItems);
+      // console.log(todaysItems);
+      // todaysItems[18] = "go home";
+      // console.log(todaysItems);
+      createPlannerPage(dateString);
+      //localStorage.removeItem('dailyCalendar');
+      //localStorage.setItem('dailyCalendar',JSON.stringify(calDetails));
+   
     }
 
     function createPlannerPage(dateString){
       var head = document.querySelector('#currentDay');
       var TB = document.querySelector('#timeBlocks');
-      let div = document.createElement("div")
+      let div = document.createElement("div");
+      let itemTxt =""; 
       head.textContent = dateString;
-      let divTimetext ="";
-      let se='<div class="container">';
+      var se='<div class="container">';
       // create the buttons for all of 
-      for (i = 8; i<=18; i++){
-        let hr = "timeSlot" + i;  
-        
-        let but1 = "";but2 = ""; but3 = ""
-        if (i<12) {
-            divTimetext= i + ":00 AM";}
-        else if(i === 12){
-            divTimetext= "noon";
-        } else {
-            divTimetext = (i-12) + ":00 PM"
-        } 
-        let itemTxt = todaysItems[0][i];
-
-        but1 = '<div class="row"><div class="btn border  first-btn">' + divTimetext + '</div>';
-         if (i <= hour){
-           but2 = '<label class="btn border second-btn-past" id = "'+hr+ '" h1>'+ itemTxt  +'</label>';
-           but3 = '<button type="button" class="btn border third-btn-past" ' + 'id = "' +  + '">' + 
+      for (let i = 8; i <=18; i++){
+        let divTimetext = moment(i,"H").format("h:mm a");
+        itemTxt  = todaysItems[i];
+        but1 = '<div class="row"><div class="btn border  first-btn">' + divTimetext + '</div>';       
+        if (i <= hour){
+           but2 = '<input readonly class="btn second-btn-past" id = calItem'+ i+ ' value="'+ itemTxt +'"></input>';
+           but3 = '<button type="button" class="btn border third-btn-past" ' + 'id = "' + i + '">' + 
            '<i class="far fa-calendar"></i></button></div>';
-         } else { but2 = '<input type="text" class="btn border second-btn" id = "'+hr+ '" value="'+ itemTxt +'"></input>';
+         } else { but2 = '<input type="text" class="btn second-btn" id = calItem'+i+ ' value="'+ itemTxt +'"></input>';
          but3 = '<button type="button" class="btn border third-btn" ' + 'id = "' + i + '">' + 
          '<i class="far fa-calendar"></i></button></div>';}
         se += but1 + but2 +but3;
       }
-    se +='</div>'
+    se +='</div>';
     TB.innerHTML = se;
 
-      Listen to the input buttons for the click!
-      var elements = document.querySelectorAll("input[type=button]");   
+      // Listen to the input buttons for the click!
+      var elements = document.querySelectorAll("button");   
+      //create listeners for all the buttons
       for(var i = 0, len = elements.length; i < len; i++) {   
-        elements[i].addEventListener("click", saveCalendarItem());
+        elements[i].addEventListener("click", saveCalendarItem)
       } 
-
+      //create a listener for the clear all
+      document.querySelector("#clearAll").addEventListener("click", function(e){
+        e.preventDefault();        
+        localStorage.removeItem(dateString);
+        location.reload();
+      })
+    }
     
 
-    }
+  
 
     function saveCalendarItem(){
-      let dateEntries = [];
+      console.log(this);
+      let j = this.id;
+      let i = "#calItem"+j;
+      let itm2 = document.querySelector(i).value;
+      todaysItems[j] = itm2;
+      let updatedItems = JSON.stringify(todaysItems);
+      localStorage.setItem(dateString,updatedItems);
+
     }
 
 
-  function getCalendarItems(dateString){
-  
+  function getCalendarItems(dateString){ 
       //Get the High Score for the start
-      if (!localStorage.getItem('dailyCalendar')){
-       setCal(dateString);
+      if (!localStorage.getItem(dateString)){ 
+       createCal(dateString);
       }
-      calDetails=JSON.parse(localStorage.getItem('dailyCalendar'));
-      return calDetails[dateString];
+      calDetails=JSON.parse(localStorage.getItem(dateString));
+      console.log("yo" + calDetails);
+      return calDetails;
   }
 
-  function setCal(dateString){
+  function createCal(dateString){
     /*creating the calendar array as a string because it simpler to work with text strings 
     and it needs to be in text json to add it to local storage anyway! */
-    let j = '{"'+dateString+'": [{'
+    let j = '{'
     let k = "", s="";
-    for (let i = 8; i  < 19; i++){
+    for (let i = 8; i  <= 18; i++){
       if( i == 18){
         k = '"'+i+'": " "';
       } else {
@@ -92,10 +99,10 @@
       }
       j = j + k; 
     }
-  j=j+'}]}';
-   localStorage.setItem('dailyCalendar',j);
-     }
-
+  j=j+'}';
+   localStorage.setItem(dateString,j); 
+   return; 
+  }
 
 
 

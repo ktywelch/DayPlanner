@@ -61,13 +61,6 @@ textarea{
   color: white;
 }
 
-.saveBtn {
-  border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  background-color: #06AED5;
-  color: white;
-}
 
 .saveBtn i:hover {
   font-size: 20px;
@@ -85,16 +78,14 @@ textarea{
   width: 70%;
   border-style: solid;
   border: #ff6961;
-  border-width: 2px;
   background-color: palegreen;
 }
 
 .second-btn-past{
   width: 70%;
   border-style: solid;
-  border: #ff6961;
-  border-width: 2px;
-  background-color: rgb(219, 235, 216)
+  border: rgb(219, 235, 216);
+  background-color: rgb(219, 235, 216);
 }
 .third-btn{
   border-style: solid;
@@ -109,4 +100,5 @@ textarea{
   border: #ff6961;
   border-width: 2px;
   background-color: pink;
+
 }
