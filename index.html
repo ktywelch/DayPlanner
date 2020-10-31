@@ -26,8 +26,13 @@
   <body>
     <header class="jumbotron">
       <h1 class="display-3">Work Day Scheduler</h1>
-      <p class="lead">A simple calendar app for scheduling your work day</p>
-      <p id="currentDay" class="lead"></p>
+      <p class="lead">A simple calendar app for scheduling your work day<br>
+        Items will be saved only when  button on right is clicked</p>
+    <nav class="container">
+        <button id="yesterday" class="col"></button>
+        <p id="currentDay" class="col justify-content-center"></p>
+        <button class="col" id="tomorrow"></button>
+      </nav>
       <button id=clearAll>Clear All Today's Entries</button>
     </header>
     <div class="container d-flex" id="timeBlocks">

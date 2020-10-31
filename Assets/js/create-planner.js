@@ -6,14 +6,23 @@
     var today = dt.format(`MMMM-DD-YYYY`);
     var calDetails=[],todaysItems=[];
     var dateString = "";
-    console.log(today);
+   
 
 
     function startPlanner(){
-      //Lets just do it for today
+      //if ()
+      dt = moment();
+
+      dayOfWeek = dt.format("DDDD");
+      hour =    dt.format("HH");
+      today = dt.format(`MMMM-DD-YYYY`);
+      let cd=document.querySelector('#currentDay');
+      cd.textContent = today;
+     
+      //Lets just do it for today - place holder for yesterday and tomorrow
       dateString = today;
       todaysItems = getCalendarItems(dateString);
-      console.log("here" + todaysItems);
+     
       // console.log(todaysItems);
       // todaysItems[18] = "go home";
       // console.log(todaysItems);
@@ -22,6 +31,23 @@
       //localStorage.setItem('dailyCalendar',JSON.stringify(calDetails));
    
     }
+/* for future
+    function addNavBar(){
+    let cd=document.querySelector('#currentDay');
+    cd.textContent = today;
+    let newNav = document.createElement("nav");
+    newNav.setAttribute("Class","navbar navbar-expand-lg");
+    newNav.innerHTML()
+    
+//     <span><a>High Score:&nbsp; </a></span>
+//     <span><a id="highScore"></a></span>
+//   <!-- Making the button toggler to be uses as window is collapsed -->
+//   <div class=" ml-auto justify-content-end">
+//     <span><a>Time Remaining: </a></span>
+//     <span><a id="timerem"></a></span>
+// </div>
+// </nav>
+    } */
 
     function createPlannerPage(dateString){
       var head = document.querySelector('#currentDay');
@@ -34,14 +60,19 @@
       for (let i = 8; i <=18; i++){
         let divTimetext = moment(i,"H").format("h:mm a");
         itemTxt  = todaysItems[i];
+        if (itemTxt.length >1 ){
+          icon = `class="fas fa-calendar-check"`;
+        } else { 
+          icon = `class="far fa-calendar"`
+        }
         but1 = '<div class="row"><div class="btn border  first-btn">' + divTimetext + '</div>';       
         if (i <= hour){
            but2 = '<input readonly class="btn second-btn-past" id = calItem'+ i+ ' value="'+ itemTxt +'"></input>';
            but3 = '<button type="button" class="btn border third-btn-past" ' + 'id = "' + i + '">' + 
-           '<i class="far fa-calendar"></i></button></div>';
+           '<i  id="icon'+i+'"'+icon + '></i></button></div>';
          } else { but2 = '<input type="text" class="btn second-btn" id = calItem'+i+ ' value="'+ itemTxt +'"></input>';
          but3 = '<button type="button" class="btn border third-btn" ' + 'id = "' + i + '">' + 
-         '<i class="far fa-calendar"></i></button></div>';}
+         '<i id="icon' +i+'"'+icon + '></i></button></div>';}
         se += but1 + but2 +but3;
       }
     se +='</div>';
@@ -61,17 +92,23 @@
       })
     }
     
-
-  
-
     function saveCalendarItem(){
-      console.log(this);
       let j = this.id;
       let i = "#calItem"+j;
+      let  icon = document.querySelector('#icon'+j);
+      
+      //icon.toggleClass("far fa-calendar","fas fa-calendar-check");
       let itm2 = document.querySelector(i).value;
       todaysItems[j] = itm2;
       let updatedItems = JSON.stringify(todaysItems);
       localStorage.setItem(dateString,updatedItems);
+      if(itm2.length > 0){
+      icon.setAttribute("class","fas fa-calendar-check");
+      } else {
+        icon.setAttribute("class","far fa-calendar");
+      }
+      
+     
 
     }
 
@@ -82,7 +119,6 @@
        createCal(dateString);
       }
       calDetails=JSON.parse(localStorage.getItem(dateString));
-      console.log("yo" + calDetails);
       return calDetails;
   }
 
