@@ -13,7 +13,7 @@ The assignment for homework2 is to create a web application tha utilizes the boo
 This object of this assignment is to generate a javascript quiz that stores high scores
 so that the user can gauge progress compared to peers.
 
-[link to Quiz!](https://ktywelch.github.io/DayPlanner/)
+[link to Day Planner!](https://ktywelch.github.io/DayPlanner/)
 
 	
 ## Technologies
