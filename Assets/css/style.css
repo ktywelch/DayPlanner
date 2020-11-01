@@ -85,12 +85,6 @@ textarea{
   background-color: palegreen;
 }
 
-.second-btn-past{
-  width: 70%;
-  border-style: solid;
-  border: rgb(219, 235, 216);
-  background-color: rgb(219, 235, 216);
-}
 .third-btn{
   border-style: solid;
   width: 10%;
@@ -117,5 +111,13 @@ textarea{
   border: #ff6961;
   border-width: 2px;
   background-color: rgb(247, 227, 55);
+}
+
+.second-btn-overlay{
+  width: 70%;
+  align-content: center;
+  border-style: solid;
+  border: rgb(219, 235, 216);
+  background-color: rgb(219, 235, 216);
 }
 

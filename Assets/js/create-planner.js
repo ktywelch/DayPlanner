@@ -12,6 +12,8 @@
     function startPlanner(){
       //if ()
       dt = moment();
+      // enable tooltip
+    
 
       dayOfWeek = dt.format("DDDD");
       hour =    dt.format("HH");
@@ -65,7 +67,7 @@
         }
         but1 = '<div class="row"><div class="btn border  first-btn">' + divTimetext + '</div>';       
         if (i < hour){
-           but2 = '<input readonly class="btn second-btn-past" id = calItem'+ i+ ' value="'+ itemTxt +'"></input>';
+           but2 = '<div class="btn second-btn-overlay" data-toggle="tooltip" title="Time slot is in the past cannot be updated">'+ itemTxt +'</div>';
            but3 = '<button type="button" class="btn border third-btn-past" ' + 'id = "' + i + '">' + 
            '<i  id="icon'+i+'"'+icon + '></i></button></div>';
          } else if (i == hour){
@@ -142,4 +144,7 @@
 
 
 //    setCal();
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
     startPlanner();
